@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "StylesController@home")->name('home');
+Route::get('/help', 'StylesController@help')->name('help');
+Route::get('/about', "StylesController@about")->name('about');
+Route::get('signup', 'UsersController@create')->name('signup');

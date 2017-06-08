@@ -1,17 +1,24 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
-class StylesController extends Controller
+use App\Http\Controllers\Controller;
+use Auth;
+class SessionsController extends Controller
 {
-    public function home(){
-      return view('static_pages/home');
+    public function create()
+    {
+        return view('sessions.create');
     }
-    public function help(){
-      return view('static_pages/help');
+    public function store(Request $request)
+    {
+       $this->validate($request, [
+           'email' => 'required|email|max:255',
+           'password' => 'required'
+       ]);
+
+       return;
     }
 }

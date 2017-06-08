@@ -16,7 +16,11 @@ Route::get('/help', 'StylesController@help')->name('help');
 Route::get('/about', "StylesController@about")->name('about');
 Route::get('signup', 'UsersController@create')->name('signup');
 Route::resource('users', 'UsersController');
-Route::get('/test', 'UsersController@test');
+
+Route::get('login','SessionsController@create')->name('login');
+Route::post('login','SessionsController@store')->name('login');
+Route::delete('logout','SessionsController@destroy')->name('logout');
+
 // Route::get('/users', 'UsersController@index')->name('users.index');
 // Route::get('/users/{user}', 'UsersController@show')->name('users.show');
 // Route::get('/users/create', 'UsersController@create')->name('users.create');

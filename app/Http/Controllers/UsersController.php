@@ -60,7 +60,12 @@ class UsersController extends Controller
        $this->authorize('edit', $user);
        return view('users.edit', compact('user'));
    }
-
+   public function edittest($id){
+     $user = User::findOrFail($id);
+     //验证是否是该用户
+     $this->authorize('edit',$user);
+     return view('users.edittest',compact('user'));
+   }
    public function update($id, Request $request)
    {
        $this->validate($request, [
@@ -81,6 +86,23 @@ class UsersController extends Controller
        session()->flash('success', '个人资料更新成功！');
 
        return redirect()->route('users.show', $id);
+   }
+   public function modify($id, Request $request){
+     $this->validate($request,[
+                    'name'=>'required|max:50',
+                    'password'=>'confirmed|min:6'
+      ]);
+      $user = User::findOrFail($id);
+      $this->authorize('update',$user);
+      $date = [];
+      $data['name'] = $request->name;
+      if($request->password){
+          $data['password'] = bcrypt($request->password);
+      }
+      $user->update($data);
+      session()->flash('success','测试修改成功');
+      return redirect()->route('users.edittest',$id);
+
    }
    public function destroy($id)
     {

@@ -1,5 +1,5 @@
-@extends('layouts.default')
-@section('title', '更新个人资料')
+@extends('layouts.default');
+@section('title','编辑用户信息');
 
 @section('content')
 <div class="col-md-offset-2 col-md-8">
@@ -13,8 +13,8 @@
 
 
 
-        <form method="POST" action="{{ route('users.update', $user->id )}}">
-            {{ method_field('PATCH') }}
+        <form method="POST" action="{{ route('users.modify', $user->id )}}">
+            {{ method_field('PUT') }}
             {{ csrf_field() }}
 
             <div class="form-group">
